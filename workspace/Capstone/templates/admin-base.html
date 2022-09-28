@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+	{% block extrahead %} {% endblock %}
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css" media="all" />
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" />
+	<![endif]-->
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-func.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-mine.js"></script>
+</head>
+<body>
+<!-- Shell -->
+<div id="shell">
+	<!-- Header -->
+	<div id="header">
+		<h1 id="logo"><a href="/">Movie Hunter</a></h1>
+		<div class="social">
+			
+		</div>
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="/">HOME</a></li>
+			    {% if request.session.admin %}
+			    <li><a href="/admin_home/"><p>Hello,  {{request.session.admin.first}}</p>
+				{% ifequal request.session.admin.user_type '3' %}
+				<p>Super Admin</p>
+				{% else %}
+				<p>Administrator</p>
+				{% endifequal %}
+				</a></li>
+			    <li><a href="/admin_logout/">Sign Out</a></li>
+				{% else %}
+				<li><a href="/admin_login/"><p>Sign in</p></a></li>
+				{% endif %}
+			</ul>
+		</div>
+		<!-- end Navigation -->
+		
+		<!-- Sub-menu -->
+		<div id="sub-navigation">
+			
+		</div>
+		<!-- end Sub-Menu -->
+		
+	</div>
+	<!-- end Header -->
+	
+	<!-- Main -->
+	<div id="main">
+		<!-- Content -->
+		<div id="content">
+			<div>
+				<div class="user-navigation">
+					<ul>My Account
+						<li><a href="/admin_viewadmin/?id={{request.session.admin.id}}">Profile</a></li>
+						<li><a href="/admin_update_adminprofile_page/?id={{request.session.admin.id}}">Modify Profile</a></li>
+						<li><a href="/admin_updatepassword_page/?id={{request.session.admin.id}}&user_type=0">Change Password</a></li>
+					</ul>
+					{% ifequal request.session.admin.user_type '3' %}
+					<ul>Administrator
+						<li><a href="/admin_addadmin/">Add Admin</a></li>
+						<li><a href="/admin_findadmin/?account=&first=&last=&page=1">Admins List</a></li>
+					</ul>
+					{% endifequal %}
+					<ul>User
+						<li><a href="/admin_findcustomer/?account=&first=&last=&page=1">Customer List</a></li>
+					</ul>
+					<ul>Movie
+						<li><a href="/admin_findmovie/?title=&genre=&page=1">Movie List</a></li>
+						<li><a href="/admin_addmovie_page/">Add Movie</a></li>
+					</ul>
+					<ul>Order
+						<li><a href="/admin_findorder/?account=&status=&page=1">Order List</a></li>
+					</ul>
+					<ul>Promotion
+						<li><a href="/admin_findpromotion/?code=&begin=&end=&page=1">Promotion List</a></li>
+						<li><a href="/admin_addpromotion_page/">Add Promotion</a></li>
+					</ul>
+				</div>
+				<div class="user-content">
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+		<div class="cl">&nbsp;</div>
+	</div>
+
+	<!-- Footer -->
+	<div id="footer">
+		<p>
+			<a href="/">HOME</a> <span>|</span>
+			<a href="/toprating/?page=1">Top Rated</a> <span>|</span>
+			<a href="/recommend/?page=1">Recommends</a> <span>|</span>
+
+		</p>
+		<p> &copy; 2014 Movie Hunter(Capstone Project), LLC. All Rights Reserved. By Gong Chen</p>
+	</div>
+	<!-- end Footer -->
+</div>
+<!-- end Shell -->
+</body>
+</html>

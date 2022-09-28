@@ -1,0 +1,31 @@
+{% extends "trivial-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Login</title>
+{% endblock %}
+
+{% block content %}
+<!-- Login-->
+	<div id="login">
+	<label>Login</label>
+	<table class="login_table">
+	<tr>
+	<td class="label">Account</td>
+	<td class="input"><input type="text" name="account" class="blink login-field"  /></td>
+	</tr>
+	<tr>
+	<td class="label">Password</td>
+	<td class="input"><input type="password" name="password" class="blink login-field"  /></td>
+	</tr>
+	<tr>
+	<td></td>
+	<td style="text-align: center;"><a href = "/forgetpassword/">Forget password</a></td>
+	</tr>
+	<tr>
+	<td></td>
+	<td><input type="reset" value="Reset" class="button"  onClick="reset();"/>
+		<input type="button"value="Submit" class="button" onClick="js_login();"/></td>
+	</tr>
+	</table>
+<!-- end Login -->
+{% endblock %}

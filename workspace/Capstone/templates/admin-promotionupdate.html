@@ -1,0 +1,40 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Admin - Update Promotion</title>
+{% endblock %}
+
+{% block content %}
+<div class="password">
+	<label>Add Promotion</label>
+	<form action="/admin_updatepromotion/" method="post" enctype="multipart/form-data"> 
+	<input type="hidden" name="id" value="{{promotion.id}}"/>
+	<table>
+	<tr>
+	<td class="label">Code:</td>
+	<td class="input">{{promotion.code}}</td>
+	<td class="message" name="code"></td>
+	</tr>
+	<tr>
+	<td class="label">Start Date:</td>
+	<td class="input"><input type="date" name="begin" value="{{promotion.begin | date:"Y-m-d" }}" class="blink register-field"/></td>
+	<td class="message" name="begin"></td>
+	</tr><tr>
+	<td class="label">End Date:</td>
+	<td class="input"><input type="date" name="end" value="{{promotion.end | date:"Y-m-d" }}" class="blink register-field"/></td>
+	<td class="message" name="end"></td>
+	</tr><tr>
+	<td class="label">Discount:</td>
+	<td class="input"><input type="number" name="discount" value="{{promotion.discount | stringformat:"d"}}" class="blink register-field"/>%</td>
+	<td class="message" name="discount"></td>
+	</tr>
+	<tr>
+	<td ></td>
+	<td><input  type="submit" value="Update" class="button toleft" onClick="return admin_checkpromotion_begin_end_discount();"/></td>
+	<td ></td>
+	</tr>
+	</table>
+	
+	</form>
+</div>
+{% endblock %}

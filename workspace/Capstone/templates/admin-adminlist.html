@@ -1,0 +1,44 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Admin - Customer List</title>
+{% endblock %}
+
+{% block content %}
+<div class="user_list">
+<form action="/search_movie/" method="get" accept-charset="utf-8"></form>
+<table>
+<tr>
+<td>Account:<input name="account" value="{{account}}" class="searhing-field"></td>
+<td>First Name:<input name="first" value="{{first}}" class="searhing-field"></td>
+<td>Last Name:<input name="last" value="{{last}}" class="searhing-field"></td>
+<td><input type="button" value="Search" onClick="admin_js_searchadmin();"/></td>
+</tr>
+</table>
+
+
+<table class="hovertable">
+<tr>
+	<th>Account</th><th>First Name</th><th>Last Name</th><th>Others</th>
+</tr>
+{% for a in admins %}
+<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+	<td>{{a.account}}</td><td>{{a.first}}</td><td>{{a.last}}</td>
+	<td><a href="/admin_viewadmin/?id={{a.id}}">Details</a> | 
+	<a href="/admin_update_adminprofile_page/?id={{a.id}}">Edit</a> |
+	<a href="javascript:confirmToDelete('/admin_deleteuser/?id={{a.id}}');">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<div class="order-list">
+
+		<!-- Page-->
+				 <script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+					</script>
+				<!--end Page-->
+	</div>
+{% endblock %}

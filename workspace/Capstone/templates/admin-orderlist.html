@@ -1,0 +1,57 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Admin - Order List</title>
+{% endblock %}
+
+{% block content %}
+<div class="user_list">
+<table>
+<tr>
+<td>Account:<input name="account" value="{{account}}" class="searhing-field"></td>
+<td>Status:	<select name="status" id="select-field">
+					<option value="">Status</option>
+					{% for key, value in order_status.items %}
+						{% ifequal status key|stringformat:'s' %}
+							<option value="{{key}}" selected>{{ value }}</option>
+						{% else %}
+							<option value="{{key}}">{{ value }}</option>
+						{% endifequal %}
+					{% endfor %}
+				</select></td>
+<td><input type="button" value="Search" onClick="admin_js_searchorder();"/></td>
+</tr>
+</table>
+
+
+<table class="hovertable">
+<tr>
+	<th>User Account</th><th>Date</th><th>Status</th><th>Others</th>
+</tr>
+{% for o in orders %}
+<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+	<td>{{o.user.account}}</td><td>{{o.time}}</td>
+	<td>{% for key, value in order_status.items %}
+			{% ifequal o.status|stringformat:'s' key|stringformat:'s' %}
+				{{ value }}
+			{% endifequal %}
+		{% endfor %}</td>
+	<td><a href="/admin_vieworderdetail/?id={{o.id}}">Details</a> 
+	{% if o.status == 1 %}
+		| <a href="/admin_shiporder/?id={{o.id}}">Ship</a></td>
+	{% endif %}
+</tr>
+{% endfor %}
+</table>
+</div>
+<div class="order-list">
+
+		<!-- Page-->
+				 <script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+					</script>
+				<!--end Page-->
+	</div>
+{% endblock %}

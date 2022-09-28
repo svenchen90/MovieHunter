@@ -1,0 +1,52 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - View Credit</title>
+{% endblock %}
+
+{% block content %}
+<div class="credit">
+	<label>Credit</label>
+	<table>
+	<tr>
+	<td class="label">Card Number:</td>
+	<td class="detail">************{{credit.creidt_number | slice:"12:"}}</td>
+	</tr>
+	<tr>
+	<td class="label">Card Type:</td>
+	<td class="detail">
+		{% if credit.creidt_type == 0 %}
+			Visa
+		{% elif  credit.creidt_type == 1 %}
+			Master
+		{% elif  credit.creidt_type == 2 %}
+			Debit
+		{% endif %}</td>
+	</tr>
+	<tr>
+	<td class="label">Expire Date:</td>
+	<td class="detail">{{credit.creidt_expire | date:"Y-m"}}</td>
+	</tr>
+	<tr>
+	<td class="label">Card Holder:</td>
+	<td class="detail">{{credit.creidt_holder}}</td>
+	</tr>
+	<tr>
+	<td class="label">Billing Address:</td>
+	<td class="detail">{{credit.creidt_address}}</td>
+	</tr>
+	<tr>
+	<td class="label">City:</td>
+	<td class="detail">{{credit.creidt_city}}</td>
+	</tr>
+	<tr>
+	<td class="label">State:</td>
+	<td class="detail">{{credit.creidt_state.name}}</td>
+	</tr>
+	<tr>
+	<td class="label">Zip:</td>
+	<td class="detail">{{credit.creidt_zip}}</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

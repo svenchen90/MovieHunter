@@ -1,0 +1,69 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Admin - Add Movie</title>
+{% endblock %}
+
+{% block content %}
+<div class="password">
+	<label>Add Movie</label>
+	<form action="/admin_addmovie/" method="post" enctype="multipart/form-data"> 
+	<table>
+	<tr>
+	<td class="label">Title:</td>
+	<td class="input"><input type="text" name="title" class="blink register-field"/></td>
+	<td class="message" name="title"></td>
+	</tr>
+	<tr>
+	<td class="label">Year:</td>
+	<td class="input"><input type="text" name="year" class="blink register-field"/></td>
+	<td class="message" name="year"></td>
+	</tr>
+	<tr>
+	<td class="label">Director:</td>
+	<td class="input"><input type="text" name="director" class="blink register-field"/></td>
+	<td class="message" name="director"></td>
+	</tr>
+	<tr>
+	<td class="label">Actor:</td>
+	<td class="input"><input type="text" name="actor" class="blink register-field"/></td>
+	<td class="message" name="actor"></td>
+	</tr>
+	<tr>
+	<td class="label">Description:</td>
+	<td class="input"><textarea name="description" class="blink register-field"/></textarea></td>
+	<td class="message" name="description"></td>
+	</tr>
+	<tr>
+	<td class="label">Picture:</td>
+	<td class="input"><input type="file" name="ImageField" class="file" id="ImageField"/></td>
+	<td class="message" name="description"></td>
+	</tr>
+	<tr>
+	<td class="label">Price:</td>
+	<td class="input"><input type="text" name="price" class="blink register-field"/></td>
+	<td class="message" name="price"></td>
+	</tr>
+	<tr>
+	<td class="label">Quantity:</td>
+	<td class="input"><input type="text" name="quantity" class="blink register-field"/></td>
+	<td class="message" name="quantity"></td>
+	</tr>
+	<tr>
+	<td class="label">Genres:</td>
+	<td class="input" colspan="2">
+		{% for g in genre %}
+		<label class="checkbox"><input name="genres" type="checkbox" value="{{g.id}}" />{{g.name}}</label>
+		{% endfor %}
+	</td>
+	</tr>
+	<tr>
+	<td ></td>
+	<td><input  type="submit" value="Create" class="button toleft" onClick="return admin_checkmovie();"/></td>
+	<td ></td>
+	</tr>
+	</table>
+	
+	</form>
+</div>
+{% endblock %}

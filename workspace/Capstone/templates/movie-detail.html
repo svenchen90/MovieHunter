@@ -1,0 +1,101 @@
+{% extends "home-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Detail of Movie</title>
+{% endblock %}
+
+{% block content %}
+<!-- Main -->
+	<div id="main">
+		<!-- Content -->
+		<div id="content">
+
+			<!-- Box -->
+			<div class="box">
+				<div class="head">
+					<h2>Movie Detail</h2>
+				</div>
+				
+				<!-- Movie -->
+				<div>
+					<div class="big-image">
+							<a href="/movie_detail/?id={{movie.id}}"><img src="{{movie.picture}}" alt="movie" /></a>
+					</div>
+					<div class="movie-one">
+						<table class="movie_detail">
+						<tr>
+						<td class="label">Title</td>
+						<td class="detail">{{movie.title}}</td>
+						</tr>
+						<tr>
+						<td class="label">year</td>
+						<td class="detail">{{movie.year}}</td>
+						</tr>
+						<tr>
+						<td class="label">Director</td>
+						<td class="detail">{{movie.director}}</td>
+						</tr>
+						<tr>
+						<td class="label">Actors</td>
+						<td class="detail">{{movie.actor}}</td>
+						</tr>
+						<tr>
+						<td class="label">Genre</td>
+						<td class="detail">
+						{% if movie.genre.all or movie.genre.all|length == 0 %}
+							{{movie.genre.all|join:" , "}}
+						{% else %}
+							{{movie.genre|join:" , "}}
+						{% endif %}
+						</td>
+						</tr>
+						<tr>
+						<td class="label">Description</td>
+						<td class="detail">{{movie.description}}</td>
+						</tr>
+						<tr>
+						<td class="label">Price</td>
+						<td class="detail">{{movie.price}}</td>
+						</tr>
+						<tr>
+						<td class="label">Quantity</td>
+						<td class="detail">{{movie.quantity}}</td>
+						</tr>
+						<tr>
+						<td class="label">Rating</td>
+						<td class="detail">{{movie.rates|floatformat:2}}</td>
+						</tr>
+						<tr>
+						<td class="label"><a href="javascript:js_addItem('{{movie.id}}');">Add to Cart</a></td>
+						<td class="detail"></td>
+						</tr>
+						</table>
+						<div id="star">
+								<span></span>
+								<ul>
+									<li><a>1</a></li>
+									<li><a>2</a></li>
+									<li><a>3</a></li>
+									<li><a>4</a></li>
+									<li><a>5</a></li>
+								</ul>
+								<span></span>
+								<p></p>
+						</div>
+					</div>
+				</div>
+				<!-- end Movie -->
+				<div class="cl">&nbsp;</div>
+			</div>
+			<!-- end Box -->
+			
+		</div>
+		<!-- end Content -->
+		
+		<div class="page">
+			
+		</div>
+		<div class="cl">&nbsp;</div>
+	</div>
+<!-- end Main -->
+{% endblock %}

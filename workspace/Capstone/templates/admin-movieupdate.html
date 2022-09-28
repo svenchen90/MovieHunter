@@ -1,0 +1,85 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Update Movie</title>
+{% endblock %}
+
+{% block content %}
+<div class="password">
+	<label>Add Movie</label>
+	<form action="/admin_updatemovie/" method="post" enctype="multipart/form-data"> 
+	<input type="hidden" name="id" value="{{movie.id}}"/>
+	<table>
+	<tr>
+	<td class="label">Title:</td>
+	<td class="input"><input type="text" name="title" value="{{movie.title}}" class="blink register-field"/></td>
+	<td class="message" name="title"></td>
+	</tr>
+	<tr>
+	<td class="label">Year:</td>
+	<td class="input"><input type="text" name="year" value="{{movie.year}}" class="blink register-field"/></td>
+	<td class="message" name="year"></td>
+	</tr>
+	<tr>
+	<td class="label">Director:</td>
+	<td class="input"><input type="text" name="director" value="{{movie.director}}" class="blink register-field"/></td>
+	<td class="message" name="director"></td>
+	</tr>
+	<tr>
+	<td class="label">Actor:</td>
+	<td class="input"><input type="text" name="actor" value="{{movie.actor}}" class="blink register-field"/></td>
+	<td class="message" name="actor"></td>
+	</tr>
+	<tr>
+	<td class="label">Description:</td>
+	<td class="input"><textarea name="description" class="blink register-field"/>{{movie.description}}</textarea></td>
+	<td class="message" name="description"></td>
+	</tr>
+	<tr>
+	<td class="label">Picture:</td>
+	<td class="input">
+	<input type="file" name="ImageField" class="file" id="ImageField"/>
+	<input type="hidden" name="picture" value="{{ movie.picture }}"/>
+	</td>
+	<td class="message" name="description"></td>
+	</tr>
+	<tr>
+	<td class="label">Price:</td>
+	<td class="input"><input type="text" name="price" value="{{movie.price}}" class="blink register-field"/></td>
+	<td class="message" name="price"></td>
+	</tr>
+	<tr>
+	<td class="label">Quantity:</td>
+	<td class="input"><input type="text" name="quantity" value="{{movie.quantity}}" class="blink register-field"/></td>
+	<td class="message" name="quantity"></td>
+	</tr>
+	<tr>
+	<td class="label">Genres:</td>
+	<td class="input" colspan="2">
+		{% for g in genre %}
+			{% if movie.genre.all or movie.genre.all|length == 0 %}
+				{% if g in movie.genre.all %}
+					<label class="checkbox"><input name="genres" type="checkbox" value="{{g.id}}" checked/>{{g.name}}</label>
+				{% else %}
+					<label class="checkbox"><input name="genres" type="checkbox" value="{{g.id}}" />{{g.name}}</label>
+				{% endif %}
+			{% else %}
+				{% if g in movie.genre %}
+					<label class="checkbox"><input name="genres" type="checkbox" value="{{g.id}}" checked/>{{g.name}}</label>
+				{% else %}
+					<label class="checkbox"><input name="genres" type="checkbox" value="{{g.id}}" />{{g.name}}</label>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	</td>
+	</tr>
+	<tr>
+	<td ></td>
+	<td><input  type="submit" value="Create" class="button toleft" onClick="return admin_checkmovie();"/></td>
+	<td ></td>
+	</tr>
+	</table>
+	
+	</form>
+</div>
+{% endblock %}

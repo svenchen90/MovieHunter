@@ -1,0 +1,59 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Modify Movie</title>
+{% endblock %}
+
+{% block content %}
+<div class="profile">
+
+	<label>Movie Detail</label>
+	<table>
+	<tr>
+	<td rowspan = "10"><img src="{{ movie.picture }}" alt="movie" class="admin-image"/></td>
+	<td class="label">ID:</td>
+	<td class="detail">{{movie.id}}</td>
+	</tr>
+	<tr>
+	<td class="label">Title:</td>
+	<td class="detail">{{movie.title}}</td>
+	</tr>
+	<tr>
+	<td class="label">Year:</td>
+	<td class="detail">{{movie.year}}</td>
+	</tr>
+	<tr>
+	<td class="label">Director:</td>
+	<td class="detail">{{movie.director}}</td>
+	</tr>
+	<tr>
+	<td class="label">Actor:</td>
+	<td class="detail">{{movie.actor}}</td>
+	</tr>
+	<tr>
+	<td class="label">Genre:</td>
+	<td class="detail">{% if movie.genre.all or movie.genre.all|length == 0 %}
+							{{movie.genre.all|join:" , "}}
+						{% else %}
+							{{movie.genre|join:" , "}}
+						{% endif %}</td>
+	</tr>
+	<tr>
+	<td class="label">Description:</td>
+	<td class="detail">{{movie.description}}</td>
+	</tr>
+	<tr>
+	<td class="label">Price:</td>
+	<td class="detail">{{movie.price}}</td>
+	</tr>
+	<tr>
+	<td class="label">Quantity:</td>
+	<td class="detail">{{movie.quantity}}</td>
+	</tr>
+	<tr>
+	<td class="label">Rates:</td>
+	<td class="detail">{{movie.rates|floatformat:2}}</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

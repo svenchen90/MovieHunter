@@ -1,0 +1,85 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Modify Credit</title>
+{% endblock %}
+
+{% block content %}
+<div class="credit">
+	<label>Modify Credit</label>
+	<table>
+	<tr>
+	<td class="label">Card Number:</td>
+	<td class="input"><input type="text" name="creidt_number" class="blink register-field"/></td>
+	<td class="message" name="creidt_number"></td>
+	</tr>
+	<tr>
+	<td class="label">Card Type:</td>
+	<td class="input">
+		<select name="creidt_type" >
+			<option value="">Select</option>
+			{% for key, value in card_type.items %}
+				{% if key == credit.creidt_type %}
+					<option value="{{key}}" selected>{{ value}}</option>
+				{% else %}
+					<option value="{{key}}">{{ value}}</option>
+				{% endif %}
+			{% endfor %}
+		</select></td>
+	<td class="message" name="creidt_type"></td>
+	</tr>
+	<tr>
+	<td class="label">Expire Date:</td>
+	<td class="input"><input type="month" name="creidt_expire" value="{{credit.creidt_expire|date:"Y-m" }}" class="blink register-field"/></td>
+	<td class="message" name="creidt_expire"></td>
+	</tr>
+	<tr>
+	<td class="label">CSC:</td>
+	<td class="input"><input type="text" name="creidt_csc" class="blink register-field"/></td>
+	<td class="message" name="creidt_csc"></td>
+	</tr>
+	<tr>
+	<td class="label">Card Holder:</td>
+	<td class="input"><input type="text" name="creidt_holder" value="{{credit.creidt_holder}}" class="blink register-field"/></td>
+	<td class="message" name="creidt_holder"></td>
+	</tr>
+	<tr>
+	<td class="label">Billing Address:</td>
+	<td class="input"><input type="text" name="creidt_address" value="{{credit.creidt_address}}" class="blink register-field"/></td>
+	<td class="message" name="creidt_address"></td>
+	</tr>
+	<tr>
+	<td class="label">City:</td>
+	<td class="input"><input type="text" name="creidt_city" value="{{credit.creidt_city}}" class="blink register-field"/></td>
+	<td class="message" name="creidt_city"></td>
+	</tr>
+	<tr>
+	<td class="label">State:</td>
+	<td class="input">
+		<select name="creidt_state" >
+			<option value="">Select</option>
+			{% for s in state %}
+				{% if s == credit.creidt_state %}
+				<option value="{{s.id}}" selected>{{ s.name}}</option>
+				{% else %}
+				<option value="{{s.id}}">{{ s.name}}</option>
+				{% endif %}
+			{% endfor %}
+		</select></td>
+	<td class="message" name="creidt_state"></td>
+	</tr>
+	<tr>
+	<td class="label">Zip:</td>
+	<td class="input"><input type="text" name="creidt_zip" value="{{credit.creidt_zip}}" class="blink register-field"/></td>
+	<td class="message" name="creidt_zip"></td>
+	</tr>
+	<tr>
+	<td class="label"></td>
+	<td>
+	<input type="reset" value="Reset" class="button" onClick="reset();"/>
+	<input type="submit" value="Submit" class="button" onClick="js_userCredit_update();"/>
+		</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+	{% block extrahead %} {% endblock %}
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css" media="all" />
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" />
+	<![endif]-->
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-func.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-mine.js"></script>
+</head>
+<body>
+<!-- Shell -->
+<div id="shell">
+	<!-- Header -->
+	<div id="header">
+		<h1 id="logo"><a href="/">Movie Shutter</a></h1>
+		<div class="social">
+			
+		</div>
+		
+		<!-- Navigation -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="/">HOME</a></li>
+			    <li><a href="/customer_home/"><p>Hello,{{request.session.user.first}},</p>
+				<p>My Account</p></a></li>
+			    <li><a href="/modify_order/">Cart</a></li>
+			    <li><a href="/logout/">Sign Out</a></li>
+			</ul>
+		</div>
+		<!-- end Navigation -->
+		
+		<!-- Sub-menu -->
+		<div id="sub-navigation">
+			<div id="search">
+				<form action="/search_movie/" method="get" accept-charset="utf-8">
+					<label for="search-field">SEARCH</label>					
+					<input type="text" name="title" id="search-field" class="blink search-field"  />
+					<select name="genre" id="select-field">
+						<option value="">Genres</option>
+						{% for g in genre %}
+						<option value="{{g.id}}">{{ g.name}}</option>
+						{% endfor %}
+					</select>
+					<input type="hidden" name="page" value="1"/>
+					<input type="submit" value="GO!" class="search-button" />
+				</form>
+			</div>
+		</div>
+		<!-- end Sub-Menu -->
+	</div>
+	<!-- end Header -->
+	
+	<!-- Main -->
+	<div id="main">
+		<!-- Content -->
+		<div id="content">
+			<div>
+				<div class="user-navigation">
+					<ul>Personal
+						<li><a href="/view_profile/">Profile</a></li>
+						<li><a href="/modify_profile_page/">Modify Profile</a></li>
+						<li><a href="/change_password_page/">Change Password</a></li>
+					</ul>
+					<ul>Shipping
+						<li><a href="/view_shipping/">Shipping Information</a></li>
+						<li><a href="/modify_shipping/">Modify Shipping</a></li>
+					</ul>
+					<ul>Credit
+						<li><a href="/view_credit/">Credit Information</a></li>
+						<li><a href="/modify_credit/">Modify Credit</a></li>
+					</ul>
+					<ul>Order
+						<li><a href="/modify_order/">Cart</a></li>
+						<li><a href="/view_order_list/?page=1">Order History</a></li>
+					</ul>
+				</div>
+				<div class="user-content">
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+		<div class="cl">&nbsp;</div>
+	</div>
+	<!-- end Main -->
+
+	<!-- Footer -->
+	<div id="footer">
+		<p>
+			<a href="/">HOME</a> <span>|</span>
+			<a href="/toprating/?page=1">Top Rated</a> <span>|</span>
+			<a href="/recommend/?page=1">Recommends</a> 
+
+		</p>
+		<p> &copy; 2014 Movie Hunter(Capstone Project), LLC. All Rights Reserved. By Gong Chen</p>
+	</div>
+	<!-- end Footer -->
+</div>
+<!-- end Shell -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends "home-base.html" %} {% block extrahead %}
+<title>Movie Shutter - Home</title>
+{% endblock %} {% block content %}
+<!-- Main -->
+<div id="main">
+	<!-- Content -->
+	<div id="content">
+
+		<!-- Box -->
+		<div class="box">
+			<div class="head">
+				<h2>RECOMMEND</h2>
+				<p class="text-right">
+					<a href="/recommend/?page=1">See all</a>
+				</p>
+			</div>
+			
+			{% for r in recommend %}
+			<!-- Movie -->
+			<div class="movie">
+				<div class="movie-image">
+					<a href="/movie_detail/?id={{r.id}}"><span class="play"><span class="name">{{ r.title }}
+								</span></span><img src="{{ r.picture }}" alt="movie" /></a>
+				</div>
+				<div class="rating">
+					<p>RATING</p>
+					<div class="stars">
+						<div class="stars-in"></div>
+					</div>
+					<span class="comments">{{r.rates|floatformat:2}}</span>
+				</div>
+			</div>
+			<!-- end Movie -->
+			{% endfor %}
+			
+			<div class="cl">&nbsp;</div>
+		</div>
+		<!-- end Box -->
+
+		<!-- Box -->
+		<div class="box">
+			<div class="head">
+				<h2>TOP RATED</h2>
+				<p class="text-right">
+					<a href="/toprating/?page=1">See all</a>
+				</p>
+			</div>
+
+			{% for t in tops %}
+			<!-- Movie -->
+			<div class="movie">
+				<div class="movie-image">
+					<a href="/movie_detail/?id={{t.id}}"><span class="play"><span class="name">{{ t.title }}
+								</span></span><img src="{{ t.picture }}" alt="movie" /></a>
+				</div>
+				<div class="rating">
+					<p>RATING</p>
+					<div class="stars">
+						<div class="stars-in"></div>
+					</div>
+					<span class="comments">{{t.rates|floatformat:2}}</span>
+				</div>
+			</div>
+			<!-- end Movie -->
+			{% endfor %}
+
+			<div class="cl">&nbsp;</div>
+		</div>
+		<!-- end Box -->
+
+
+	</div>
+	<!-- end Content -->
+
+	<div class="cl">&nbsp;</div>
+</div>
+<!-- end Main -->
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Modify Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="profile">
+	<label>Profile</label>
+	<table>
+	<tr>
+	<td class="label">First Name:</td>
+	<td class="input"><input type="text" name="first"  value="{{admin.first}}" class="blink register-field"/></td>
+	<td class="message" name="first"></td>
+	</tr>
+	<tr>
+	<td class="label">Last Name:</td>
+	<td class="input"><input type="text" name="last"  value="{{admin.last}}" class="blink register-field"/></td>
+	<td class="message" name="last"></td>
+	</tr>
+	<tr>
+	<td class="label"></td>
+	<td colspan = '2'>
+	<input type="reset" value="Update Password" class="button"  onClick="self.location.href = '/admin_updatepassword_page/?id={{admin.id}}&user_type={{admin.user_type}}';"/>
+	<input type="button"value="Update" class="button" onClick="admin_js_adminprofile_update('{{admin.id}}');"/></td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

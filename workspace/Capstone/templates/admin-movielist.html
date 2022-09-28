@@ -1,0 +1,51 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Admin - Movie List</title>
+{% endblock %}
+
+{% block content %}
+<div class="user_list">
+<table>
+<tr>
+<td>Title:<input name="title" value="{{title}}" class="searhing-field"></td>
+<td>Genre:	<select name="genre" id="select-field">
+					<option value="">Genres</option>
+					{% for g in genre %}
+						{% ifequal genreid g.id|stringformat:'s' %}
+							<option value="{{g.id}}" selected>{{ g.name}}</option>
+						{% else %}
+							<option value="{{g.id}}">{{ g.name}}</option>
+						{% endifequal %}
+					{% endfor %}
+				</select></td>
+<td><input type="button" value="Search" onClick="admin_js_searchmovie();"/></td>
+</tr>
+</table>
+
+
+<table class="hovertable">
+<tr>
+	<th>Title</th><th>Year</th><th>Director</th><th>Others</th>
+</tr>
+{% for m in movies %}
+<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+	<td>{{m.title}}</td><td>{{m.year}}</td><td>{{m.director}}</td>
+	<td><a href="/admin_moviedetail/?id={{m.id}}">Details</a> | 
+	<a href="/admin_updatemovie_page/?id={{m.id}}">Edit</a> |
+	<a href="javascript:confirmToDelete('/admin_deletemovie/?id={{m.id}}');">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<div class="order-list">
+
+		<!-- Page-->
+				 <script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+					</script>
+				<!--end Page-->
+	</div>
+{% endblock %}

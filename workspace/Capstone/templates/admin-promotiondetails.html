@@ -1,0 +1,57 @@
+{% extends "admin-base.html" %} 
+{% block extrahead %}
+<title>Movie Shutter - Admin - Promotion Details</title>
+{% endblock %} 
+{% block content %}
+<div class="user_list">
+	<label>Promotion Details</label>
+	<table class="hovertable">
+		<tr>
+			<th>Id</th>
+			<th>Code</th>
+			<th>Starting Date</th>
+			<th>End Date</th>
+			<th>Discount</th>
+		</tr>
+		<tr>
+			<td>{{promotion.id}}</td>
+			<td>{{promotion.code}}</td>
+			<td>{{promotion.begin | date:"Y-m-d" }}</td>
+			<td>{{promotion.end | date:"Y-m-d" }}</td>
+			<td>{{promotion.discount |stringformat:"d"}}%</td>
+		</tr>
+	</table>
+		<label>Associate Moives</label>
+	<table class="hovertable">
+		<tr>
+			<th>Title</th>
+			<th>Year</th>
+			<th>Director</th>
+			<th>Genres</th>
+		</tr>
+		{% for m in movies %}
+		<tr onmouseover="this.style.backgroundColor='#ffff66';"
+			onmouseout="this.style.backgroundColor='#d4e3e5';">
+			<td>{{m.title}}</td>
+			<td>{{m.year}}</td>
+			<td>{{m.director}}</td>
+			<td>{% if m.genre.all or m.genre.all|length == 0 %}
+					{{m.genre.all|join:" , "}} 
+				{% else %} 
+					{{m.genre|join:" , "}} 
+				{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="order-list">
+
+	<!-- Page-->
+	<script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+					</script>
+	<!--end Page-->
+	</div>
+</div>
+{% endblock %}

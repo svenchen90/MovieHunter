@@ -1,0 +1,111 @@
+{% extends "trivial-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Rigistration</title>
+{% endblock %}
+
+{% block content %}
+<!-- Register -->
+<div id="register">
+	<label>Registration</label>
+	<table class="registration_table">
+		<tr>
+		<td class="label">Account</td>
+		<td class="input"><input type="text" name="account" class="blink register-field required" /></td>
+		<td class="message" name="account"></td>
+		</tr>
+		<tr>
+		<td class="label">Password</td>
+		<td class="input"><input type="password" name="password" class="blink register-field required" /></td>
+		<td class="message" name="password"></td>
+		</tr>
+		<tr>
+		<td class="label">Confirm Password</td>
+		<td class="input"><input type="password" name="password_confirm"  class="blink register-field"  /></td>
+		<td class="message" name="password_confirm"></td>
+		</tr>
+		<tr>
+		<td class="label">First Name</td>
+		<td class="input"><input type="text" name="first"  class="blink register-field"  /></td>
+		<td class="message" name="first"></td>
+		</tr>
+		<tr>
+		<td class="label">Middle Name</td>
+		<td class="input"><input type="text" name="middle"  class="blink register-field"  /></td>
+		<td class="message" name="middle"></td>
+		</tr>
+		<tr>
+		<td class="label">Last Name</td>
+		<td class="input"><input type="text" name="last"  class="blink register-field"  /></td>
+		<td class="message" name="last"></td>
+		</tr>
+		<tr>
+		<td class="label">Gender</td>
+		<td class="input">				
+			<select name="gender">
+				<option value="">Select</option>
+				{% for key, value in gender.items %}
+				<option value="{{key}}">{{ value}}</option>
+				{% endfor %}
+			</select></td>
+		<td class="message" name="gender"></td>
+		</tr>
+		<tr>
+		<td class="label">Birthday</td>
+		<td class="input"><input type="date" name="birthday" class="blink register-field"  /></td>
+		<td class="message" name="birthday"></td>
+		</tr>
+		<tr>
+		<td class="label">Occupation</td>
+		<td class="input">
+			<select name="occupation">
+				<option value="">Select</option>
+				{% for o in occupation %}
+				<option value="{{o.id}}">{{o.name}}</option>
+				{% endfor %}
+			</select></td>
+		<td class="message" name="occupation"></td>
+		</tr>
+		<tr>
+		<td class="label">Email</td>
+		<td class="input"><input type="text" name="email"  class="blink register-field"  /></td>
+		<td class="message" name="email"></td>
+		</tr>
+		<tr>
+		<td class="label">Phone</td>
+		<td class="input"><input type="text" name="phone"  class="blink register-field"  /></td>
+		<td class="message" name="phone"></td>
+		</tr>
+		<tr>
+		<td class="label">City</td>
+		<td class="input"><input type="text" name="city"  class="blink register-field"  /></td>
+		<td class="message" name="city"></td>
+		</tr>
+		<tr>
+		<td class="label">State</td>
+		<td class="input">
+			<select name="state">
+				<option value="">Select</option>
+				{% for s in state %}
+				<option value="{{s.id}}">{{s.name}}</option>
+				{% endfor %}
+			</select></td>
+		<td class="message" name="state"></td>
+		</tr>
+		<tr>
+		<td class="label">Zip</td>
+		<td class="input"><input type="text" name="zip"  class="blink register-field"  /></td>
+		<td class="message" name="zip"></td>
+		</tr>
+		<tr>
+		<td class="label"></td>
+		<td>
+			<input type="reset" value="Reset" class="button" onClick ="reset();"/>
+			<input type="button" value="Submit" class="button"  onClick ="js_registration();"/>
+			</td>
+		<td class="message"></td>
+		</tr>
+	</table>
+</div>
+<!-- End of Register -->
+{% endblock %}

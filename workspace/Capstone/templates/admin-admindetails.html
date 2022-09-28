@@ -1,0 +1,29 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - View Customer Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="profile">
+	<label>Profile</label>
+	<table>
+	<tr>
+	<td class="label">ID:</td>
+	<td class="detail">{{admin.id}}</td>
+	</tr>
+	<tr>
+	<td class="label">Account:</td>
+	<td class="detail">{{admin.account}}</td>
+	</tr>
+	<tr>
+	<td class="label">First Name:</td>
+	<td class="detail">{{admin.first}}</td>
+	</tr>
+	<tr>
+	<td class="label">Last Name:</td>
+	<td class="detail">{{admin.last}}</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

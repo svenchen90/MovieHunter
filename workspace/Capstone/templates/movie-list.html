@@ -1,0 +1,97 @@
+{% extends "home-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - List of Movie</title>
+{% endblock %}
+
+{% block content %}
+<!-- Main -->
+	<div id="main">
+		<!-- Content -->
+		<div id="content">
+
+			<!-- Box -->
+			<div class="box">
+				<div class="head">
+					<h2>LIST OF RESULT</h2>
+					<p class="text-right"><a href="#">See all</a></p>
+				</div>
+				
+				<!-- Movie -->
+				{% for m in movies %}
+				<div class="movie-list">
+					<div class="movie">
+						<div class="movie-image">
+							<a href="/movie_detail/?id={{m.id}}"><span class="play"><span class="name">{{m.title}}</span></span><img src="{{ m.picture }}" alt="movie" /></a>
+						</div>
+					</div>
+					<div class="movie-detail">
+						<table>
+						<tr>
+						<td class="label">Title:</td>
+						<td class="detail">{{m.title}}</td>
+						</tr>
+						<tr>
+						<td class="label">Year:</td>
+						<td class="detail">{{m.year}}</td>
+						</tr>
+						<tr>
+						<td class="label">Director:</td>
+						<td class="detail">{{m.director}}</td>
+						</tr>
+						<tr>
+						<td class="label">Actors:</td>
+						<td class="detail">{{m.actor}}</td>
+						</tr>
+						<tr>
+						<td class="label">Genre:</td>
+						<td class="detail">				
+						{% if m.genre.all or m.genre.all|length == 0 %}
+							{{m.genre.all|join:" , "}}
+						{% else %}
+							{{m.genre|join:" , "}}
+						{% endif %}
+						</td>
+						</tr>
+						<tr>
+						<td class="label">Quantity:</td>
+						<td class="detail">{{m.quantity}}</td>
+						</tr>
+						<tr>
+						<td class="label">Price:</td>
+						<td class="detail">{{m.price}}</td>
+						</tr>
+						</table>
+						<div class="rating">
+							<p>RATING</p>
+							<div class="stars">
+								<div class="stars-in">
+									
+								</div>
+							</div>
+							<span class="comments">{{m.rates|floatformat:2}}</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				 
+				<!-- end Movie -->
+				
+				<div class="cl">&nbsp;</div>
+				
+				<!-- Page-->
+				 <script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+				</script>
+				<!--end Page-->
+			</div>
+			<!-- end Box -->
+			
+		</div>
+		<!-- end Content -->
+		<div class="cl">&nbsp;</div>
+	</div>
+	<!-- end Main -->
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Order History</title>
+{% endblock %}
+
+{% block content %}		
+<div class="order-list">
+	<label>Order History</label>
+		<div class="order-single">
+			<div class="single-ID"></div>
+			<div class="single-datetime">Datetime</div>
+			<div class="single-sent_to">Sent To</div>
+			<div class="single-card_number">Card Number</div>
+			<div class="single-total">Total</div>
+		</div>
+		{% for o in orders %}
+		<div class="order-single">
+			<div class="single-ID"><a href="/view_order_detail/?id={{o.id}}">View</a></div>
+			<div class="single-datetime">{{o.time}}</div>
+			<div class="single-sent_to">{{o.shipping_to}}</div>
+			<div class="single-card_number">************{{o.creidt_number | slice:"12:"}}</div>
+			<div class="single-total">$ {{o.sum | floatformat:2}}</div>
+		</div>
+		{% endfor %}
+		
+		<!-- Page-->
+				 <script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+					</script>
+				<!--end Page-->
+	</div>
+{% endblock %}

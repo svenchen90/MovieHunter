@@ -1,0 +1,44 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - Admin - Add Admin</title>
+{% endblock %}
+
+{% block content %}
+<div class="profile">
+	<label>Add Administrator</label>
+	<table>
+	<tr>
+	<td class="label">Account</td>
+	<td class="input"><input type="text" name="account" class="blink register-field required" /></td>
+	<td class="message" name="account"></td>
+	</tr>
+	<tr>
+	<td class="label">Password</td>
+	<td class="input"><input type="password" name="password" class="blink register-field required" /></td>
+	<td class="message" name="password"></td>
+	</tr>
+	<tr>
+	<td class="label">Confirm Password</td>
+	<td class="input"><input type="password" name="password_confirm"  class="blink register-field"  /></td>
+	<td class="message" name="password_confirm"></td>
+	</tr>
+	<tr>
+	<td class="label">First Name:</td>
+	<td class="input"><input type="text" name="first"  class="blink register-field"/></td>
+	<td class="message" name="first"></td>
+	</tr>
+	<tr>
+	<td class="label">Last Name:</td>
+	<td class="input"><input type="text" name="last"  class="blink register-field"/></td>
+	<td class="message" name="last"></td>
+	</tr>
+	<tr>
+	<td class="label"></td>
+	<td colspan = '2'>
+	<input type="reset" value="Reset" class="button" onClick ="reset();"/>
+	<input type="button"value="Submit" class="button" onClick="js_addadmin();"/></td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

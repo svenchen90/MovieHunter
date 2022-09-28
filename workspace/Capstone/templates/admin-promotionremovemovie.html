@@ -1,0 +1,51 @@
+{% extends "admin-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Admin - Remove Movie from Promotion</title>
+{% endblock %}
+
+{% block content %}
+<div class="user_list">
+<table>
+<tr>
+<td>Title:<input name="title" value="{{title}}" class="searhing-field"></td>
+<td>Genre:	<select name="genre" id="select-field">
+					<option value="">Genres</option>
+					{% for g in genre %}
+					<option value="{{g.id}}">{{ g.name}}</option>
+					{% endfor %}
+				</select></td>
+<td><input type="button" value="Search" onClick="admin_js_searchmoviewithpromotion('{{ promotion_id }}');"/></td>
+</tr>
+</table>
+
+
+<table class="hovertable">
+<tr>
+	<th><input type="checkbox" onClick="toggle(this);"/></th><th>Title</th><th>Year</th><th>Director</th>
+</tr>
+{% for m in movies %}
+<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+	<td><input type="checkbox" name="check" value="{{m.id}}"/></td><td>{{m.title}}</td><td>{{m.year}}</td><td>{{m.director}}</td>
+</tr>
+{% endfor %}
+<tr>
+<td colspan="4" style="text-align: right;">
+	| <a href="javascript: checkAllAndReset(true);">Select all</a> |
+	<a href="javascript: checkAllAndReset(false);">Reset</a> |
+	<a href="javascript: ajax_removeMovieFromPromotion('{{ promotion_id }}');">Remove</a> |
+</td>
+</tr>
+</table>
+</div>
+<div class="order-list">
+
+		<!-- Page-->
+				 <script language="JavaScript">
+					var pg = new showPages('pg');
+					pg.pageCount = {{totalpage}};
+					pg.printHtml();
+					</script>
+				<!--end Page-->
+	</div>
+{% endblock %}

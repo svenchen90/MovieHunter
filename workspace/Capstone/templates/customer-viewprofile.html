@@ -1,0 +1,63 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+<title>Movie Shutter - View Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="profile">
+	<label>Profile</label>
+	<table>
+	<tr>
+	<td class="label">First Name:</td>
+	<td class="detail">{{profile.first}}</td>
+	</tr>
+	<tr>
+	<td class="label">Middle Name:</td>
+	<td class="detail">{{profile.middle}}</td>
+	</tr>
+	<tr>
+	<td class="label">Last Name:</td>
+	<td class="detail">{{profile.last}}</td>
+	</tr>
+	<tr>
+	<td class="label">Gender:</td>
+	<td class="detail">
+		{% if profile.gender == 0 %}
+			Male
+		{% elif profile.gender == 1 %}
+			Female
+		{% endif %}
+	</td>
+	</tr>
+	<tr>
+	<td class="label">Birthday:</td>
+	<td class="detail">{{profile.birthday|date:"Y-m-d" }}</td>
+	</tr>
+	<tr>
+	<td class="label">Occupation:</td>
+	<td class="detail">{{profile.occupation.name}}</td>
+	</tr>
+	<tr>
+	<td class="label">Email:</td>
+	<td class="detail">{{profile.email}}</td>
+	</tr>
+	<tr>
+	<td class="label">Phone:</td>
+	<td class="detail">{{profile.phone}}</td>
+	</tr>
+	<tr>
+	<td class="label">City:</td>
+	<td class="detail">{{profile.city}}</td>
+	</tr>
+	<tr>
+	<td class="label">State:</td>
+	<td class="detail">{{profile.state.name}}</td>
+	</tr>
+	<tr>
+	<td class="label">Zip</td>
+	<td class="detail">{{profile.zip}}</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

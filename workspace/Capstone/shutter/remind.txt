@@ -1,0 +1,11 @@
+generate the log
+load ratings and points for movies
+finish #log
+ajax get/post(url should be different when deploy online)
+recommend algorithm
+sub_totle tax, total
+
+3 base foot
+phone regex
+credit spelling mistake
+concurrence

@@ -1,0 +1,97 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - View Order Detail</title>
+{% endblock %}
+
+{% block content %}
+<div class="order">
+	<label>Modify Order</label>
+	<div class="items">
+	<table>
+	<tr>
+	<th>Movie</th>
+	<th>Price</th>
+	<th>Quantity</th>
+	<th>Promotion</th>
+	<th></th>
+	</tr>
+	{% for i in items %}
+	<tr>
+	<td>{{i.movie.title}} ({{i.movie.year}})</td>
+	<td>$ {{i.movie.price}}</td>
+	<td>{{i.quantity}}</td>
+	<td>{{i.promotion.code}}</td>
+	<td>{% if i.promotion %}
+			&nbsp;&nbsp;{{i.promotion.discount}}% off
+		{% endif %}
+	</td>
+	</tr>
+	{% endfor %}
+	</table>
+	</div>
+	<div class="summary">
+	<hr width="100%" SIZE=1>
+	<table>
+	<tr>
+	<td>Subtotal :</td>
+	<td>$ {{subtotal | floatformat:2}}</td>
+	</tr>
+	<tr>
+	<td>Tax :</td>
+	<td>$ {{tax | floatformat:2}}</td>
+	</tr>
+	<tr>
+	<td>Total :</td>
+	<td>$ {{total | floatformat:2}}</td>
+	</tr>
+	</table>
+	</div>
+	<hr  width="100%" SIZE=1>
+	<div class="order_shipping">
+		<label>Shipping Information</label><a href="/view_ordershipping/?id={{order.id}}">view</a>
+   		{% if order.shipping_to %}
+   		<table>
+   		<tr>
+   		<td>{{order.shipping_to}}</td>
+   		</tr>
+   		<tr>
+   		<td>{{order.shipping_address}}</td>
+   		</tr>
+   		<tr>
+   		<td>{{order.shipping_city}}  ,  {{order.shipping_state.name}}  {{order.shipping_zip}}</td>
+   		</tr>
+   		<tr>
+   		<td>{{order.shipping_phone}}</td>
+   		</tr>
+   		</table>
+   		{% endif %}
+	</div>
+	<div class="order_credit">
+		<label>Credit Information</label><a href="/view_ordercredit/?id={{order.id}}">view</a>
+    {% if order.creidt_holder %}
+    <table>
+     <tr>
+    <td>{{order.creidt_holder}}</td>
+    </tr>
+    <tr>
+    <td>************{{order.creidt_number | slice:"12:"}}</td>
+    </tr>
+    <tr>
+    <td>{% if order.creidt_type == 0 %}
+			Visa
+		{% elif  order.creidt_type == 1 %}
+			Master
+		{% elif order.creidt_type == 2 %}
+			Debit
+		{% endif %}
+   	</td>
+    </tr>
+    <tr>
+    <td>{{order.creidt_expire | date:"Y-m"}}</td>
+    </tr>
+    </table>
+    {% endif %}
+	</div>
+</div>
+{% endblock %}

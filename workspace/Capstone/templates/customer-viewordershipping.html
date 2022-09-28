@@ -1,0 +1,37 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - View Order Shipping</title>
+{% endblock %}
+
+{% block content %}
+<div class="shipping">
+	<label>Shipping</label>
+	<table>
+	<tr>
+	<td class="label">Recipient:</td>
+	<td class="detail">{{order.shipping_to}}</td>
+	</tr>	
+	<tr>
+	<td class="label">Address:</td>
+	<td class="detail">{{order.shipping_address}}</td>
+	</tr>	
+	<tr>
+	<td class="label">City:</td>
+	<td class="detail">{{order.shipping_city}}</td>
+	</tr>	
+	<tr>
+	<td class="label">State:</td>
+	<td class="detail">{{order.shipping_state.name}}</td>
+	</tr>	
+	<tr>
+	<td class="label">Zip:</td>
+	<td class="detail">{{order.shipping_zip}}</td>
+	</tr>	
+	<tr>
+	<td class="label">Phone:</td>
+	<td class="detail">{{order.shipping_phone}}</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

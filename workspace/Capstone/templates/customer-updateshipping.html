@@ -1,0 +1,59 @@
+{% extends "customer-base.html" %}
+
+{% block extrahead %} 
+	<title>Movie Shutter - Update Shipping</title>
+{% endblock %}
+
+{% block content %}
+<div class="shipping">
+	<label>Modify Shipping</label>
+	<table>
+	<tr>
+	<td class="label">Recipient:</td>
+	<td class="input"><input type="text" name="shipping_to" value="{{order.shipping_to}}" class="blink register-field"/></td>
+	<td class="message" name="shipping_to"></td>
+	</tr>	
+	<tr>
+	<td class="label">Address:</td>
+	<td class="input"><input type="text" name="shipping_address" value="{{order.shipping_address}}" class="blink register-field"/></td>
+	<td class="message" name="shipping_address"></td>
+	</tr>	
+	<tr>
+	<td class="label">City:</td>
+	<td class="input"><input type="text" name="shipping_city" value="{{order.shipping_city}}" class="blink register-field"/></td>
+	<td class="message" name="shipping_city"></td>
+	</tr>	
+	<tr>
+	<td class="label">State:</td>
+	<td class="input"><select name="shipping_state">
+					<option value="" selected>Select</option>
+					{% for s in state %}
+					{% if s == order.shipping_state %}
+					<option value="{{s.id}}" selected>{{ s.name}}</option>
+					{% else %}
+					<option value="{{s.id}}">{{ s.name}}</option>
+					{% endif %}
+					{% endfor %}
+				</select></td>
+	<td class="message" name="shipping_state" ></td>
+	</tr>	
+	<tr>
+	<td class="label">Zip:</td>
+	<td class="input"><input type="text" name="shipping_zip" value="{{order.shipping_zip}}" class="blink register-field"/></td>
+	<td class="message" name="shipping_zip"></td>
+	</tr>	
+	<tr>
+	<td class="label">Phone:</td>
+	<td class="input"><input type="text" name="shipping_phone" value="{{order.shipping_phone}}" class="blink register-field"/></td>
+	<td class="message" name="shipping_phone"></td>
+	</tr>	
+	<tr>
+	<td class="label"></td>
+	<td>
+	<input type="reset" value="Reset" class="button" onClick="reset();"/>
+	<input type="submit" value="Submit" class="button" onClick="js_updateordershipping('{{order.id}}');"/>
+		</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}
